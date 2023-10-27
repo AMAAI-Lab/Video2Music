@@ -30,7 +30,6 @@ If you find this resource useful, [please cite the original work](https://arxiv.
 ## Prerequisites
 - clip==1.0
 - coloredlogs==15.0.1
-- efficientnet_pytorch==0.7.1
 - ffmpeg_python==0.2.0
 - ftfy==6.1.1
 - matplotlib==3.5.3
