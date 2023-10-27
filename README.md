@@ -4,8 +4,8 @@ This repository contains the code and dataset accompanying the paper "Video2Musi
 
 - Demo: [https://amaai-lab.github.io/AIMuVi/](https://amaai-lab.github.io/AIMuVi/)
 - Dataset (Muvi-Sync)
-  * Muvi-Sync [(5 MB)]()
-  * Muvi-Sync (audio, video) (optional) [(5 MB)]()
+  * Muvi-Sync (features) [(5 MB)]()
+  * Muvi-Sync (original audio + video) [(5 MB)]()
   
 ## Introduction
 we propose a novel AI-powered multimodal music generation framework called Video2Music. This framework uniquely uses video features as conditioning input to generate matching music using a Transformer architecture. By employing cutting-edge technology, our system aims to provide video creators with a seamless and efficient solution for generating tailor-made background music.
@@ -46,8 +46,7 @@ If you find this resource useful, [please cite the original work](https://arxiv.
 * Clone this repo
 
 * Obtain the dataset:
-  * Muvi-Sync [(5 MB)]()
-  * Muvi-Sync (audio, video) (optional) [(5 MB)]()
+  * Muvi-Sync (features) [(5 MB)]()
  
 * Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
