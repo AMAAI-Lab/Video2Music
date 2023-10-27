@@ -23,7 +23,22 @@ If you find this resource useful, [please cite the original work](https://arxiv.
 
   Kang, J., Poria, S. & Herremans, D. (2023). Music Generation to Match Video using an Affective Multimodal Transformer model. arXiv preprint arXiv:XXX.
 
-## Dataset files
+## Getting Started
+### Install Dependencies
+
+### Download Pre-trained Checkpoints
+We provide pre-trained AMT for generating music.
+* `AMT` [(120 MB)](https://drive.google.com/file/d/1ZPQiTyz8wqxwPdYxYSCEtq4MLbR5s9jh/view?usp=drive_link)
+
+### Obtain the Dataset
+We provide the Muvi-Sync. [(5 MB)](https://drive.google.com/open?id=1JUDHGrVYGyHtjkfI2vgR1xb2oU8unlI3)
+* `dataset/vevo_scene`: scene offset 
+* `dataset/vevo_motion`:
+
+We provide the Muvi-Sync for audio and video. [(5 MB)]()
+* `dataset/vevo_audio`: scene offset 
+* `dataset/vevo`:
+
 
 ## Affective Multimodal Transformer model
 
