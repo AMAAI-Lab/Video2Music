@@ -23,22 +23,20 @@ If you find this resource useful, [please cite the original work](https://arxiv.
 
 ## Directory Structure
 
-* `saved_models/`: code of the whole pipeline
-* `utilities/`: code of the whole pipeline
+* `saved_models/`: saved model files
+* `utilities/`
   * `run_model_vevo.py`: training script, take a npz as input music data to train the model
   * `run_model_regression.py`: training script, take a npz as input music data to train the model
-* `model/`: code of the whole pipeline
-  * `video_music_transformer.py`: training script, take a npz as input music data to train the model
-  * `video_regression.py`: training script, take a npz as input music data to train the model
-  * `positional_encoding.py`: training script, take a npz as input music data to train the model
-  * `rpr.py`: training script, take a npz as input music data to train the model
-* `dataset/`: processed dataset for training, in the format of npz
-  * `vevo_dataset.py`: training
-  * `vevo/` :
-* `train.py`: training script, take a npz as input music data to train the model 
-* `evaluate.py`: training script, take a npz as input music data to train the model 
-* `generate.py`: training script, take a npz as input music data to train the model 
-
+* `model/`: code of affective multimodal transformer (AMT) model 
+  * `video_music_transformer.py`: Affective Multimodal Transformer (AMT) model 
+  * `video_regression.py`: Bi-GRU regression model used for predicting note density/loudness
+  * `positional_encoding.py`: code for Positional encoding
+  * `rpr.py`: code for RPR (Relative Positional Representation)
+* `dataset/`: 
+  * `vevo_dataset.py`: Dataset loader
+* `train.py`: training script
+* `evaluate.py`: evaluation script
+* `generate.py`: inference script
 
 ## Preparation
 
@@ -46,9 +44,11 @@ If you find this resource useful, [please cite the original work](https://arxiv.
 
 * Obtain the dataset:
   * Muvi-Sync [(5 MB)]()
-  * Muvi-Sync (audio, video) (option) [(5 MB)]()
+  * Muvi-Sync (audio, video) (optional) [(5 MB)]()
+ 
+* Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
-* Download the processed training data `AMT.zip` from [HERE](https://drive.google.com/file/d/1ZPQiTyz8wqxwPdYxYSCEtq4MLbR5s9jh/view?usp=drive_link) and extract the zip file and put the extracted two files directly under this folder (`dataset/AMT/`) 
+* Download the processed training data `AMT.zip` from [HERE](https://drive.google.com/file/d/1ZPQiTyz8wqxwPdYxYSCEtq4MLbR5s9jh/view?usp=drive_link) and extract the zip file and put the extracted two files directly under this folder (`saved_models/AMT/`) 
 
 * Install dependencies `pip install -r requirements.txt`
   * Choose the correct version of `torch` based on your CUDA version
