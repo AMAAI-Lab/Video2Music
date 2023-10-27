@@ -1,6 +1,6 @@
 # Video2Music: Music Generation to Match Video using an Affective Multimodal Transformer model
 
-This is the dataset and models to accompany the [paper](https://arxiv.org/abs/XXX) by Dr. Jaeyong Kang, Prof. Soujanya Poria, and Prof. Dorien Herremans on Music Generation to Match Video using an Affective Multimodal Transformer model.
+This repository contains the code and dataset accompanying the paper "Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model" by Dr. Jaeyong Kang, Prof. Soujanya Poria, and Prof. Dorien Herremans.
 
 - Demo: [https://amaai-lab.github.io/AIMuVi/](https://amaai-lab.github.io/AIMuVi/)
 - Dataset
