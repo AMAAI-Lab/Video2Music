@@ -40,8 +40,6 @@ We provide the Muvi-Sync for audio and video. [(5 MB)]()
 * `dataset/vevo`:
 
 
-## Affective Multimodal Transformer model
-
 ## Prerequisites
 - clip==1.0
 - coloredlogs==15.0.1
