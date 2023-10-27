@@ -2,7 +2,7 @@
 
 This is the dataset and models to accompany the [paper](https://arxiv.org/abs/XXX) by Dr. Jaeyong Kang, Prof. Soujanya Poria, and Prof. Dorien Herremans on Music Generation to Match Video using an Affective Multimodal Transformer model.
 
-- Demo: [https://jointist.github.io/Demo/](https://jointist.github.io/Demo/)
+- Demo: [https://jointist.github.io/Demo/](https://amaai-lab.github.io/AIMuVi/)
 - Dataset
 
 ![](framework.png)
