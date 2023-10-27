@@ -12,18 +12,6 @@ we propose a novel AI-powered multimodal music generation framework called Video
 
 ![](framework.png)
 
-If you find this resource useful, [please cite the original work](https://arxiv.org/abs/XXX):
-
-      @article{XXX,
-        title={Music Generation to Match Video using an Affective Multimodal Transformer model},
-        author={Kang, Jaeyong and Poria, Soujanya and Herremans, Dorien},
-        journal={arXiv preprint arXiv:XXX},
-        year={2023}
-      }
-
-  Kang, J., Poria, S. & Herremans, D. (2023). Music Generation to Match Video using an Affective Multimodal Transformer model. arXiv preprint arXiv:XXX.
-
-
 ## Directory Structure
 
 * `saved_models/`: saved model files
@@ -66,4 +54,16 @@ If you find this resource useful, [please cite the original work](https://arxiv.
   ```shell
   python generate.py
   ```
+
+## Citation
+If you find this resource useful, [please cite the original work](https://arxiv.org/abs/XXX):
+
+      @article{XXX,
+        title={Music Generation to Match Video using an Affective Multimodal Transformer model},
+        author={Kang, Jaeyong and Poria, Soujanya and Herremans, Dorien},
+        journal={arXiv preprint arXiv:XXX},
+        year={2023}
+      }
+
+Kang, J., Poria, S. & Herremans, D. (2023). Music Generation to Match Video using an Affective Multimodal Transformer model. arXiv preprint arXiv:XXX.
 
