@@ -35,7 +35,7 @@ we propose a novel AI-powered multimodal music generation framework called Video
 * Clone this repo
 
 * Obtain the dataset:
-  * Muvi-Sync (features) [(5 MB)]()
+  * Muvi-Sync (features) [(Link)]()
  
 * Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
