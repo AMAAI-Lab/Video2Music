@@ -4,8 +4,8 @@ This repository contains the code and dataset accompanying the paper "Video2Musi
 
 - Demo: [https://amaai-lab.github.io/AIMuVi/](https://amaai-lab.github.io/AIMuVi/)
 - Dataset (Muvi-Sync)
-  * Muvi-Sync (features) [(5 MB)]()
-  * Muvi-Sync (original audio + video) [(5 MB)]()
+  * Muvi-Sync (features) [(Link)]()
+  * Muvi-Sync (original audio + video) [(Link)]()
   
 ## Introduction
 we propose a novel AI-powered multimodal music generation framework called Video2Music. This framework uniquely uses video features as conditioning input to generate matching music using a Transformer architecture. By employing cutting-edge technology, our system aims to provide video creators with a seamless and efficient solution for generating tailor-made background music.
@@ -16,16 +16,17 @@ we propose a novel AI-powered multimodal music generation framework called Video
 
 * `saved_models/`: saved model files
 * `utilities/`
-  * `run_model_vevo.py`: training script, take a npz as input music data to train the model
-  * `run_model_regression.py`: training script, take a npz as input music data to train the model
-* `model/`: code of affective multimodal transformer (AMT) model 
+  * `run_model_vevo.py`: code for running model (AMT)
+  * `run_model_regression.py`: code for running model (bi-GRU)
+* `model/`
   * `video_music_transformer.py`: Affective Multimodal Transformer (AMT) model 
   * `video_regression.py`: Bi-GRU regression model used for predicting note density/loudness
   * `positional_encoding.py`: code for Positional encoding
   * `rpr.py`: code for RPR (Relative Positional Representation)
-* `dataset/`: 
+* `dataset/`
   * `vevo_dataset.py`: Dataset loader
-* `train.py`: training script
+* `train.py`: training script (AMT)
+* `train_regression.py`: training script (bi-GRU)
 * `evaluate.py`: evaluation script
 * `generate.py`: inference script
 
