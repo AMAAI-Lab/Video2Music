@@ -8,7 +8,7 @@ This repository contains the code and dataset accompanying the paper "Video2Musi
   * MuVi-Sync (original audio + video) [(Link)]()
   
 ## Introduction
-we propose a novel AI-powered multimodal music generation framework called Video2Music. This framework uniquely uses video features as conditioning input to generate matching music using a Transformer architecture. By employing cutting-edge technology, our system aims to provide video creators with a seamless and efficient solution for generating tailor-made background music.
+We propose a novel AI-powered multimodal music generation framework called Video2Music. This framework uniquely uses video features as conditioning input to generate matching music using a Transformer architecture. By employing cutting-edge technology, our system aims to provide video creators with a seamless and efficient solution for generating tailor-made background music.
 
 ![](framework.png)
 
