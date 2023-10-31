@@ -20,6 +20,7 @@ Welcome to the MuVi-Sync dataset! This collection provides a rich array of featu
 - **vevo_meta:**
   - *idlist.txt:* List of features, titles, and YouTube IDs
 
-Explore and utilize this dataset for innovative research and applications. For more details, refer to our [GitHub repository](https://github.com/AMAAI-Lab/Video2Music).
+Explore and utilize this dataset for innovative research and applications. 
 
-Happy exploring and creating with MuVi-Sync!
+For more details, refer to our [GitHub repository](https://github.com/AMAAI-Lab/Video2Music).
+
