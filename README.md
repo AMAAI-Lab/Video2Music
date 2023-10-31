@@ -4,7 +4,7 @@ This repository contains the code and dataset accompanying the paper "Video2Musi
 
 - Demo: [https://amaai-lab.github.io/Video2Music/](https://amaai-lab.github.io/Video2Music/)
 - Dataset (MuVi-Sync)
-  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10050276)
+  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
   * MuVi-Sync (original audio + video) [(Link)]()
   
 ## Introduction
@@ -35,7 +35,7 @@ We propose a novel AI-powered multimodal music generation framework called Video
 * Clone this repo
 
 * Obtain the dataset:
-  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10050276)
+  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
  
 * Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
