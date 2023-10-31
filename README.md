@@ -3,9 +3,9 @@
 This repository contains the code and dataset accompanying the paper "Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model" by Dr. Jaeyong Kang, Prof. Soujanya Poria, and Prof. Dorien Herremans.
 
 - Demo: [https://amaai-lab.github.io/AIMuVi/](https://amaai-lab.github.io/AIMuVi/)
-- Dataset (Muvi-Sync)
-  * Muvi-Sync (features) [(Link)](https://zenodo.org/records/10050276)
-  * Muvi-Sync (original audio + video) [(Link)]()
+- Dataset (MuVi-Sync)
+  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10050276)
+  * MuVi-Sync (original audio + video) [(Link)]()
   
 ## Introduction
 we propose a novel AI-powered multimodal music generation framework called Video2Music. This framework uniquely uses video features as conditioning input to generate matching music using a Transformer architecture. By employing cutting-edge technology, our system aims to provide video creators with a seamless and efficient solution for generating tailor-made background music.
@@ -35,7 +35,7 @@ we propose a novel AI-powered multimodal music generation framework called Video
 * Clone this repo
 
 * Obtain the dataset:
-  * Muvi-Sync (features) [(Link)](https://zenodo.org/records/10050276)
+  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10050276)
  
 * Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
