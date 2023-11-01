@@ -6,7 +6,7 @@ This repository contains the code and dataset accompanying the paper "Video2Musi
 - Dataset (MuVi-Sync)
   * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
   * MuVi-Sync (original video) [(Link)](https://zenodo.org/records/10050294)
-  * MuVi-Sync (original audio) [(Link)]()
+  * MuVi-Sync (original audio) [(Link)](https://zenodo.org/records/10058631)
   
 ## Introduction
 We propose a novel AI-powered multimodal music generation framework called Video2Music. This framework uniquely uses video features as conditioning input to generate matching music using a Transformer architecture. By employing cutting-edge technology, our system aims to provide video creators with a seamless and efficient solution for generating tailor-made background music.
