@@ -14,14 +14,6 @@ SPLITTER = '?'
 
 # graph_results
 def graph_results(input_dirs="./saved_models/v3/results", output_dir=None, model_names=None, epoch_start=0, epoch_end=None):
-    """
-    ----------
-    Author: Damon Gwinn
-    ----------
-    Graphs model training and evaluation data
-    ----------
-    """
-
     input_dirs = input_dirs.split(SPLITTER)
 
     if(model_names is not None):
@@ -143,15 +135,6 @@ def graph_results(input_dirs="./saved_models/v3/results", output_dir=None, model
 
 # graph_results_legacy
 def graph_results_legacy(input_dirs="./saved_models/v3/results", output_dir=None, model_names=None, epoch_start=0, epoch_end=None):
-    """
-    ----------
-    Author: Ben Myrick
-    Modified: Damon Gwinn
-    ----------
-    Graphs model training and evaluation data using the old results format (legacy)
-    ----------
-    """
-
     input_dirs = input_dirs.split(SPLITTER)
 
     if(model_names is not None):
@@ -252,14 +235,6 @@ def graph_results_legacy(input_dirs="./saved_models/v3/results", output_dir=None
 
 # parse_args
 def parse_args():
-    """
-    ----------
-    Author: Damon Gwinn
-    ----------
-    Argparse arguments
-    ----------
-    """
-
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-input_dirs", type=str, default="./saved_models/v3/results", help="Input results folder from trained model ('results' folder). Seperate with '?' symbol for comparisons between models")
@@ -272,15 +247,6 @@ def parse_args():
     return parser.parse_args()
 
 def main():
-    """
-    ----------
-    Author: Ben Myrick
-    Modified: Damon Gwinn
-    ----------
-    Entry point
-    ----------
-    """
-
     args = parse_args()
 
     if(not args.legacy):
