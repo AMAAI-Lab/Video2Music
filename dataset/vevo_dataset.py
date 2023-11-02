@@ -318,15 +318,6 @@ class VevoDataset(Dataset):
         aend = [0]+[0,0,0,0,0,0,0,0,0,0,0,0,0]*12+[1,0]
         apad = [0]+[0,0,0,0,0,0,0,0,0,0,0,0,0]*12+[0,1]
 
-        # b0 = [0]+[1,0,1,0,0,0,0,0,0,0,1,0,0]+[0,0]
-        # b1 = [0]+[0,1,0,1,0,0,0,1,0,1,0,0,0]+[0,0]
-        # a2 = [0]+[0,1,1,1,0,0,0,0,0,0,1,0,0]+[0,0]
-        # a3 = [0]+[0,0,0,1,1,1,0,0,0,0,0,0,0]+[0,0]
-        # a4 = [0]+[1,0,0,0,0,0,0,0,1,0,0,0,1]+[0,0]
-        # a5 = [0]+[0,0,0,0,0,0,0,0,0,0,0,0,0]+[0,0]
-        # aend = [0]+[0,0,0,0,0,0,0,0,0,0,0,0,0]+[1,0]
-        # apad = [0]+[0,0,0,0,0,0,0,0,0,0,0,0,0]+[0,1]
-
         a0_tensor = torch.tensor(a0)
         a1_tensor = torch.tensor(a1)
         a2_tensor = torch.tensor(a2)
@@ -364,13 +355,7 @@ class VevoDataset(Dataset):
 
         tgt_emotion = mapped_tensor[1:]
         tgt_emotion_prob = max_prob_values[1:]
-
-
-
-
-
-        #### ---- SEMANTIC ----- ####
-
+        
         feature_semantic_list = []
         if self.is_video:
             for i in range( len(self.vis_models_arr) ):
@@ -385,7 +370,6 @@ class VevoDataset(Dataset):
                     feature_semantic = video_feature_tensor[:self.max_seq_video]
                 feature_semantic_list.append(feature_semantic)
 
-        #return x, tgt, feature_semantic_list, feature_key, feature_scene_offset
         return { "x":x, 
                 "tgt":tgt, 
                 "x_root":x_root, 
@@ -405,7 +389,6 @@ class VevoDataset(Dataset):
 
 def create_vevo_datasets(dataset_root = "./dataset", max_seq_chord=300, max_seq_video=300, vis_models="2d/clip_l14p", emo_model="6c_l14p", split_ver="v1", random_seq=True, is_video=True):
 
-    #dataset_root = "./dataset/", split="train", vis_models="", max_seq_chord=300, max_seq_video=300, random_seq=True, is_video = True):
     train_dataset = VevoDataset(
         dataset_root = dataset_root, split="train", split_ver=split_ver, 
         vis_models=vis_models, emo_model =emo_model, max_seq_chord=max_seq_chord, max_seq_video=max_seq_video, 
@@ -423,9 +406,6 @@ def create_vevo_datasets(dataset_root = "./dataset", max_seq_chord=300, max_seq_
     
     return train_dataset, val_dataset, test_dataset
 
-
-
-# V19
 def compute_vevo_accuracy(out, tgt):
     softmax = nn.Softmax(dim=-1)
     out = torch.argmax(softmax(out), dim=-1)
@@ -438,7 +418,6 @@ def compute_vevo_accuracy(out, tgt):
     out = out[mask]
     tgt = tgt[mask]
 
-    # Empty
     if(len(tgt) == 0):
         return 1.0
 
@@ -448,8 +427,6 @@ def compute_vevo_accuracy(out, tgt):
     acc = num_right / len(tgt)
 
     return acc
-
-
 
 def compute_hits_k(out, tgt, k):
     softmax = nn.Softmax(dim=-1)
@@ -515,7 +492,6 @@ def compute_hits_k_root_attr(out_root, out_attr, tgt, k):
             if tgt[i].item() in tlist:
                 num_right += 1
 
-    # Empty
     if len(tgt) == 0:
         return 1.0
     
@@ -523,9 +499,6 @@ def compute_hits_k_root_attr(out_root, out_attr, tgt, k):
     hitk = num_right / pt
 
     return hitk
-
-
-
 
 def compute_vevo_correspondence(out, tgt, tgt_emotion, tgt_emotion_prob, emotion_threshold):
 
@@ -557,8 +530,6 @@ def compute_vevo_correspondence(out, tgt, tgt_emotion, tgt_emotion_prob, emotion
 
     tgt = tgt.flatten()
 
-    #out = tgt
-
     num_right = 0
     tgt_emotion_quality = tgt_emotion[:, 0:14]
     pt = 0 
@@ -582,11 +553,6 @@ def compute_vevo_correspondence(out, tgt, tgt_emotion, tgt_emotion_prob, emotion
                 if tgt_emotion_quality[i][out_quality] == 1:
                     num_right += 1
                     
-    # tgt = tgt.flatten()
-    # mask = (tgt != CHORD_PAD)
-    # out = out[mask]
-    # tgt = tgt[mask]
-    # Empty
 
     if(len(tgt_emotion) == 0):
         return 1.0
@@ -595,10 +561,6 @@ def compute_vevo_correspondence(out, tgt, tgt_emotion, tgt_emotion_prob, emotion
         return -1
     
     num_right = torch.tensor(num_right, dtype=torch.float32)
-
-    # num_right = (out == tgt)
-    # num_right = torch.sum(num_right).type(TORCH_FLOAT)
-
     acc = num_right / pt
 
     return acc
@@ -627,7 +589,6 @@ def compute_vevo_correspondence_root_attr(y_root, y_attr, tgt, tgt_emotion, tgt_
     with open(chordInvDicPath) as json_file:
         chordInvDic = json.load(json_file)
 
-
     softmax = nn.Softmax(dim=-1)
 
     y_root = torch.argmax(softmax(y_root), dim=-1)
@@ -637,8 +598,6 @@ def compute_vevo_correspondence_root_attr(y_root, y_attr, tgt, tgt_emotion, tgt_
     y_attr = y_attr.flatten()
 
     tgt = tgt.flatten()
-    # mask = (tgt != CHORD_PAD)
-    # y = []
     y = np.empty( len(tgt) )
 
     y.fill(CHORD_PAD)
@@ -663,13 +622,7 @@ def compute_vevo_correspondence_root_attr(y_root, y_attr, tgt, tgt_emotion, tgt_
     y = torch.from_numpy(y)
     y = y.to(torch.long)
     y = y.to(get_device())
-    # y = y[mask]
-    # tgt = tgt[mask]
-    # y = torch.argmax(softmax(y), dim=-1)
     y = y.flatten()
-
-    #tgt = tgt.flatten()
-    #out = tgt
 
     num_right = 0
     tgt_emotion_quality = tgt_emotion[:, 0:14]
@@ -692,12 +645,6 @@ def compute_vevo_correspondence_root_attr(y_root, y_attr, tgt, tgt_emotion, tgt_
                 if tgt_emotion_quality[i][y_quality] == 1:
                     num_right += 1
                     
-    # tgt = tgt.flatten()
-    # mask = (tgt != CHORD_PAD)
-    # out = out[mask]
-    # tgt = tgt[mask]
-    # Empty
-
     if(len(tgt_emotion) == 0):
         return 1.0
     
@@ -705,16 +652,9 @@ def compute_vevo_correspondence_root_attr(y_root, y_attr, tgt, tgt_emotion, tgt_
         return -1
     
     num_right = torch.tensor(num_right, dtype=torch.float32)
-
-    # num_right = (out == tgt)
-    # num_right = torch.sum(num_right).type(TORCH_FLOAT)
-
     acc = num_right / pt
-
     return acc
 
-
-# v19_2 : but not superier
 def compute_vevo_accuracy_root_attr(y_root, y_attr, tgt):
 
     dataset_root = "./dataset/"
@@ -737,12 +677,9 @@ def compute_vevo_accuracy_root_attr(y_root, y_attr, tgt):
     y_root = y_root.flatten()
     y_attr = y_attr.flatten()
 
-
     tgt = tgt.flatten()
 
     mask = (tgt != CHORD_PAD)
-
-    # y = []
     y = np.empty( len(tgt) )
     y.fill(CHORD_PAD)
 
@@ -763,7 +700,6 @@ def compute_vevo_accuracy_root_attr(y_root, y_attr, tgt):
                     chord = chordRoot + ":" + chordAttr
                     y[i] = chordDic[chord]
 
-    
     y = torch.from_numpy(y)
     y = y.to(torch.long)
     y = y.to(get_device())
@@ -782,81 +718,3 @@ def compute_vevo_accuracy_root_attr(y_root, y_attr, tgt):
 
     return acc
 
-# def compute_vevo_accuracy_root(y_root, tgt_root):
-#     softmax = nn.Softmax(dim=-1)
-#     y_root = torch.argmax(softmax(y_root), dim=-1)
-#     y_root = y_root.flatten()
-#     tgt_root = tgt_root.flatten()
-#     mask = (tgt_root != CHORD_ROOT_PAD)
-#     y_root = y_root[mask]
-#     tgt_root = tgt_root[mask]
-#     # Empty
-#     if(len(tgt_root) == 0):
-#         return 1.0
-#     num_right = (y_root == tgt_root)
-#     num_right = torch.sum(num_right).type(TORCH_FLOAT)
-#     acc = num_right / len(tgt_root)
-#     return acc
-
-# def compute_vevo_accuracy_attr(y_attr, tgt_attr):
-#     softmax = nn.Softmax(dim=-1)
-#     y_attr = torch.argmax(softmax(y_attr), dim=-1)
-#     y_attr = y_attr.flatten()
-#     tgt_attr = tgt_attr.flatten()
-#     mask = (tgt_attr != CHORD_ATTR_PAD)
-#     y_attr = y_attr[mask]
-#     tgt_attr = tgt_attr[mask]
-#     # Empty
-#     if(len(tgt_attr) == 0):
-#         return 1.0
-#     num_right = (y_attr == tgt_attr)
-#     num_right = torch.sum(num_right).type(TORCH_FLOAT)
-#     acc = num_right / len(tgt_attr)
-#     return acc
-
-# def compute_loudness_accuracy(out, feature_loudness):
-#     softmax = nn.Softmax(dim=-1)
-
-#     out = torch.argmax(softmax(out), dim=-1)
-
-#     out = out.flatten()
-#     feature_loudness = feature_loudness.flatten()
-
-#     mask = (tgt != CHORD_PAD)
-
-#     out = out[mask]
-#     tgt = tgt[mask]
-
-#     # Empty
-#     if(len(tgt) == 0):
-#         return 1.0
-
-#     num_right = (out == tgt)
-#     num_right = torch.sum(num_right).type(TORCH_FLOAT)
-
-#     acc = num_right / len(tgt)
-
-#     return acc
-
-# def compute_note_density_accuracy(out, feature_note_density):
-#     softmax = nn.Softmax(dim=-1)
-#     out = torch.argmax(softmax(out), dim=-1)
-
-#     out = out.flatten()
-#     feature_note_density = feature_note_density.flatten()
-
-#     mask = (tgt != CHORD_PAD)
-
-#     out = out[mask]
-#     tgt = tgt[mask]
-
-#     # Empty
-#     if(len(tgt) == 0):
-#         return 1.0
-
-#     num_right = (out == tgt)
-#     num_right = torch.sum(num_right).type(TORCH_FLOAT)
-
-#     acc = num_right / len(tgt)
-
-#     return acc
