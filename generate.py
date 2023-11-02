@@ -33,56 +33,6 @@ version = VERSION
 split_ver = SPLIT_VER
 split_path = "split_" + split_ver
 test_id = "331"
-
-# 331
-# 344
-# 366
-# 370
-# 382
-# 403
-
-
-
-# 411
-# 418
-# 419
-# 426
-# 428
-# 439
-# 444
-# 461
-# 468
-# 481
-# 487
-# 499
-# 520
-# 523
-# 526
-# 530
-# 561
-# 564
-# 566
-# 573
-# 593
-# 603
-# 619
-# 626
-# 640
-# 645
-# 647
-# 658
-# 659
-# 669
-# 670
-# 707
-# 708
-# 725
-# 752
-# 768
-
-
-
-
 num_prime_chord = 30
 
 is_voice = True
@@ -740,15 +690,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-#  if args.is_video:
-#         model = VideoMusicTransformer(n_layers=args.n_layers, num_heads=args.num_heads,
-#                 d_model=args.d_model, dim_feedforward=args.dim_feedforward,
-#                 max_sequence_midi=args.max_sequence_midi, max_sequence_video=args.max_sequence_video, max_sequence_chord=args.max_sequence_chord, total_vf_dim=total_vf_dim, rpr=args.rpr).to(get_device())
-#     else:
-#         model = MusicTransformer(n_layers=args.n_layers, num_heads=args.num_heads,
-#                 d_model=args.d_model, dim_feedforward=args.dim_feedforward,
-#                 max_sequence_midi=args.max_sequence_midi, max_sequence_chord=args.max_sequence_chord, rpr=args.rpr).to(get_device())
     
