@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import json
 
-
 from dataset.vevo_dataset import compute_vevo_accuracy, compute_vevo_correspondence, compute_hits_k, compute_hits_k_root_attr, compute_vevo_accuracy_root_attr, compute_vevo_correspondence_root_attr
 
 def train_epoch(cur_epoch, model, dataloader, 
@@ -119,14 +118,8 @@ def train_epoch(cur_epoch, model, dataloader,
                 loss_chord_attr = train_loss_func.forward(y_attr, tgt_attr)
 
                 loss_chord = loss_chord_root + loss_chord_attr
-
-                # first_14 = tgt_emotion[:, :14]
-                # last_2 = tgt_emotion[:, -2:]
-                # tgt_emotion_attr = torch.cat((first_14, last_2), dim=1)
-                # loss_emotion = train_loss_emotion_func.forward(y_attr, tgt_emotion_attr)
                 loss_emotion = -1
-
-                # total_loss = LOSS_LAMBDA * loss_chord + (1-LOSS_LAMBDA) * loss_emotion
+              
                 total_loss = loss_chord
                 total_loss.backward()
                 opt.step()
@@ -134,8 +127,6 @@ def train_epoch(cur_epoch, model, dataloader,
                     lr_scheduler.step()
             else:
                 # use MusicTransformer (no sep)
-
-                
                 y = model(x,
                         x_root,
                         x_attr,
@@ -176,19 +167,13 @@ def eval_model(model, dataloader,
                isVideo = True, isGenConfusionMatrix=False):
     model.eval()
     avg_acc     = -1
-    
     avg_cor     = -1
-    # avg_cor_2     = -1
-    # avg_cor_3     = -1
-    
     avg_acc_cor = -1
 
     avg_h1 = -1
     avg_h3 = -1
     avg_h5 = -1
     
-    # avg_acc_root     = -1
-    # avg_acc_attr     = -1
     avg_loss_chord    = -1
     avg_loss_emotion    = -1
     avg_total_loss    = -1
@@ -203,27 +188,18 @@ def eval_model(model, dataloader,
     
     with torch.set_grad_enabled(False):
         n_test      = len(dataloader)
-
         n_test_cor = 0 
-        # n_test_cor_2 = 0 
-        # n_test_cor_3 = 0 
 
         sum_loss_chord   = 0.0
         sum_loss_emotion  = 0.0
         sum_total_loss   = 0.0
 
         sum_acc    = 0.0
-        
         sum_cor = 0.0
-        # sum_cor_2 = 0.0
-        # sum_cor_3 = 0.0
-        
+
         sum_h1 = 0.0
         sum_h3 = 0.0
         sum_h5 = 0.0
-        
-        # sum_acc_root    = 0.0
-        # sum_acc_attr    = 0.0
         
         for batch in dataloader:
             x   = batch["x"].to(get_device())
@@ -314,7 +290,6 @@ def eval_model(model, dataloader,
                     
                     tgt_emotion = tgt_emotion.squeeze()
 
-                    # print("hello world")
                     loss_chord = eval_loss_func.forward(y, tgt)
                     loss_emotion = eval_loss_emotion_func.forward(y, tgt_emotion)
                     total_loss = LOSS_LAMBDA * loss_chord + (1-LOSS_LAMBDA) * loss_emotion
@@ -389,9 +364,7 @@ def eval_model(model, dataloader,
                     first_14 = tgt_emotion[:, :14]
                     last_2 = tgt_emotion[:, -2:]
                     tgt_emotion_attr = torch.cat((first_14, last_2), dim=1)
-
                     loss_emotion = eval_loss_emotion_func.forward(y_attr, tgt_emotion_attr)
-
                     
                     total_loss = LOSS_LAMBDA * loss_chord + (1-LOSS_LAMBDA) * loss_emotion
 
@@ -406,8 +379,8 @@ def eval_model(model, dataloader,
                             feature_key)
                     
                     sum_acc += float(compute_vevo_accuracy(y, tgt ))
-
                     cor = float(compute_vevo_correspondence(y, tgt, tgt_emotion, tgt_emotion_prob, EMOTION_THRESHOLD))
+                    
                     if cor >= 0 :
                         n_test_cor +=1
                         sum_cor += cor
@@ -422,7 +395,6 @@ def eval_model(model, dataloader,
                     tgt = tgt.flatten()
                     loss_chord = eval_loss_func.forward(y, tgt)
                     loss_emotion = eval_loss_emotion_func.forward(y, tgt_emotion)
-                    #loss_emotion = -1
                     total_loss = loss_chord
 
                     sum_loss_chord += float(loss_chord)
@@ -434,21 +406,13 @@ def eval_model(model, dataloader,
         avg_total_loss    = sum_total_loss / n_test
 
         avg_acc     = sum_acc / n_test
-
         avg_cor     = sum_cor / n_test_cor
-        # avg_cor_2     = sum_cor_2 / n_test_cor_2
-        # avg_cor_3     = sum_cor_3 / n_test_cor_3
         
         avg_h1     = sum_h1 / n_test
         avg_h3     = sum_h3 / n_test
         avg_h5     = sum_h5 / n_test
         
-        # avg_acc_cor = (avg_acc +  ( (avg_cor_1+avg_cor_2+avg_cor_3)/3.0 ) )/ 2.0
         avg_acc_cor = (avg_acc + avg_cor)/ 2.0
-        
-        # avg_acc_root     = sum_acc_root / n_test
-        # avg_acc_attr    = sum_acc_attr / n_test
-
 
     if isGenConfusionMatrix:
         chordInvDicPath = "./dataset/vevo_meta/chord_inv.json"
@@ -559,73 +523,3 @@ def eval_model(model, dataloader,
              "avg_h3" : avg_h3,
              "avg_h5" : avg_h5 }
 
-
-
-
-# V19_2
-#       y_root, y_attr = model(x,
-#                   x_root,
-#                   x_attr,
-#                   feature_semantic_list, 
-#                   feature_key, 
-#                   feature_scene_offset,
-#                   feature_motion,
-#                   feature_emotion)
-        
-#         y_root   = y_root.reshape(y_root.shape[0] * y_root.shape[1], -1)        
-#         y_attr   = y_attr.reshape(y_attr.shape[0] * y_attr.shape[1], -1)
-#         tgt_root = tgt_root.flatten()
-#         tgt_attr = tgt_attr.flatten()
-
-#         loss_root = train_loss_func_root.forward(y_root, tgt_root)
-#         loss_attr = train_loss_func_attr.forward(y_attr, tgt_attr)
-#         loss = loss_root + loss_attr
-
-#         loss.backward()
-#         opt.step()
-
-#         if(lr_scheduler is not None):
-#             lr_scheduler.step()
-#         time_after = time.time()
-#         time_took = time_after - time_before
-        
-#         if((batch_num+1) % print_modulus == 0):
-#             print(SEPERATOR)
-#             print("Epoch", cur_epoch, " Batch", batch_num+1, "/", len(dataloader))
-#             print("LR:", get_lr(opt))
-#             print("Train loss:", float(loss))
-#             print("")
-#             print("Time (s):", time_took)
-#             print(SEPERATOR)
-#             print("")
-
-
-
-#           y_root, y_attr = model(x,
-#                   x_root,
-#                   x_attr,
-#                   feature_semantic_list, 
-#                   feature_key, 
-#                   feature_scene_offset,
-#                   feature_motion,
-#                   feature_emotion)
-            
-#             sum_acc_root += float(compute_vevo_accuracy_root(y_root, tgt_root))
-#             sum_acc_attr += float(compute_vevo_accuracy_attr(y_attr, tgt_attr))
-#             sum_acc += float(compute_vevo_accuracy(y_root, y_attr, tgt))
-
-#             y_root   = y_root.reshape(y_root.shape[0] * y_root.shape[1], -1)        
-#             y_attr   = y_attr.reshape(y_attr.shape[0] * y_attr.shape[1], -1)
-
-#             tgt_root = tgt_root.flatten()
-#             tgt_attr = tgt_attr.flatten()
-
-#             loss_root = eval_loss_func_root.forward(y_root, tgt_root)
-#             loss_attr = eval_loss_func_attr.forward(y_attr, tgt_attr)
-
-#             loss = loss_root + loss_attr
-#             sum_loss += float(loss)
-
-
-# avg_acc_root     = sum_acc_root / n_test
-# avg_acc_attr    = sum_acc_attr / n_test
