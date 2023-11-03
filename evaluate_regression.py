@@ -45,7 +45,6 @@ def main( vm = "", isPrintArgs = True):
 
     if vm != "":
         assert args.is_video == True
-        #VIS_MODELS = vm
         args.vis_models = vm
         vis_arr = args.vis_models.split(" ")
         vis_arr.sort()
@@ -92,8 +91,7 @@ def main( vm = "", isPrintArgs = True):
     logging.info( f"VIS MODEL: {args.vis_models}" )
     logging.info("Evaluating (Note Density):")
     model.eval()
-
-    #avg_loss, avg_rmse = eval_model(model, test_loader, loss)
+    
     eval_loss, eval_rmse, eval_rmse_note_density, eval_rmse_loudness = eval_model(model, test_loader, loss)
 
     logging.info(f"Avg loss: {eval_loss}")
