@@ -92,7 +92,8 @@ def print_train_args(args):
 
 def parse_eval_args():
     if IS_VIDEO:
-        modelpath = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results/best_loss_weights.pickle"
+        modelpath = "./saved_models/AMT/best_acc_weights.pickle"
+        # modelpath = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results/best_loss_weights.pickle"
     else:
         modelpath = "./saved_models/"+version+ "/no_video/results/best_acc_weights.pickle"
 
