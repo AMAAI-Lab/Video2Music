@@ -20,10 +20,11 @@ Welcome to the MuVi-Sync dataset! This collection provides a rich array of featu
 - **vevo_semantic:** Semantic feature
 - **vevo_motion:** Motion feature
 
-### Additional Information
+### Others
 - **vevo_meta:**
   - *idlist.txt:* List of features, titles, and YouTube IDs
-
+- **vevo:** Original videos (.mp4)
+ 
 Explore and utilize this dataset for innovative research and applications. 
 
 For more details, refer to our [GitHub repository](https://github.com/AMAAI-Lab/Video2Music).
