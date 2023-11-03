@@ -158,10 +158,11 @@ def print_eval_args(args):
 def parse_generate_args():
     parser = argparse.ArgumentParser()
     outputpath = "./output_vevo/"+version
-    
     if IS_VIDEO:
-        modelpath = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results/best_acc_weights.pickle"
-        modelpathReg = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results_regression_bigru/best_rmse_weights.pickle"
+        modelpath = "./saved_models/AMT/best_acc_weights.pickle"
+        modelpathReg = "./saved_models/AMT/best_rmse_weights.pickle"
+        # modelpath = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results/best_acc_weights.pickle"
+        # modelpathReg = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results_regression_bigru/best_rmse_weights.pickle"
     else:
         modelpath = "./saved_models/"+version+ "/no_video/results/best_acc_weights.pickle"
         modelpathReg = None
