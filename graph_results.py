@@ -237,9 +237,9 @@ def graph_results_legacy(input_dirs="./saved_models/v3/results", output_dir=None
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-input_dirs", type=str, default="./saved_models/v3/results", help="Input results folder from trained model ('results' folder). Seperate with '?' symbol for comparisons between models")
+    parser.add_argument("-input_dirs", type=str, default="./saved_models/v3/results", help="Input results folder from trained model ('results' folder). Separate with '?' symbol for comparisons between models")
     parser.add_argument("-output_dir", type=str, default="./saved_models/v3/graph_results", help="Optional output folder to save graph pngs")
-    parser.add_argument("-model_names", type=str, default=None, help="Names to display when color coding, seperate with ':'.")
+    parser.add_argument("-model_names", type=str, default=None, help="Names to display when color coding, separate with ':'.")
     parser.add_argument("-epoch_start", type=int, default=0, help="Epoch start. Defaults to first file.")
     parser.add_argument("-epoch_end", type=int, default=None, help="Epoch end (non-inclusive). Defaults to None.")
     parser.add_argument("--legacy", action="store_true", help="Use legacy results output format (you likely don't need this)")
