@@ -1,11 +1,4 @@
-#Library Imports
 import math
-
-#Using Adam optimizer with
-#Beta_1=0.9, Beta_2=0.98, and Epsilon=10^-9
-
-#Learning rate varies over course of training
-#lrate = sqrt(d_model)*min((1/sqrt(step_num)), step_num*(1/warmup_steps*sqrt(warmup_steps)))
 
 # LrStepTracker
 class LrStepTracker:
