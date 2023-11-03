@@ -60,12 +60,12 @@ We propose a novel AI-powered multimodal music generation framework called Video
 ## Citation
 If you find this resource useful, [please cite the original work](https://arxiv.org/abs/XXX):
 
-      @article{XXX,
+      @article{kang2023video2music,
         title={Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model},
         author={Kang, Jaeyong and Poria, Soujanya and Herremans, Dorien},
-        journal={arXiv preprint arXiv:XXX},
+        journal={arXiv preprint arXiv:2311.00968},
         year={2023}
       }
 
-Kang, J., Poria, S. & Herremans, D. (2023). Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model. arXiv preprint arXiv:XXX.
+Kang, J., Poria, S. & Herremans, D. (2023). Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model. arXiv preprint arXiv:2311.00968.
 
