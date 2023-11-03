@@ -37,6 +37,7 @@ We propose a novel AI-powered multimodal music generation framework called Video
 
 * Obtain the dataset:
   * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
+  * MuVi-Sync (original video) [(Link)](https://zenodo.org/records/10050294)
  
 * Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
