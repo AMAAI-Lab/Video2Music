@@ -43,7 +43,6 @@ def main( vm = "" , isPrintArgs = True ):
     if isPrintArgs:
         print_train_args(args)
     if vm != "":
-        #VIS_MODELS = vm
         args.vis_models = vm
     
     if args.is_video:
@@ -129,11 +128,6 @@ def main( vm = "" , isPrintArgs = True ):
     eval_loss_func = nn.MSELoss()
     train_loss_func = nn.MSELoss()
 
-    # lr = LR_DEFAULT_START
-    # lr_stepper = LrStepTracker(args.d_model, SCHEDULER_WARMUP_STEPS, 0)
-    # opt = Adam(model.parameters(), lr=lr, betas=(ADAM_BETA_1, ADAM_BETA_2), eps=ADAM_EPSILON)
-    # lr_scheduler = LambdaLR(opt, lr_stepper.step)
-
     opt = Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
     lr_scheduler = None
 
@@ -151,7 +145,6 @@ def main( vm = "" , isPrintArgs = True ):
 
     ##### TRAIN LOOP #####
     for epoch in range(start_epoch, args.epochs):
-        # Baseline has no training and acts as a base loss and accuracy (epoch 0 in a sense)
         if(epoch > BASELINE_EPOCH):
             print(SEPERATOR)
             print("NEW EPOCH:", epoch+1)
