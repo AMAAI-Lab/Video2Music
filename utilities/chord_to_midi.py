@@ -1,13 +1,4 @@
-#!/usr/bin/env python3
-
 # ezchord - convert complex chord names to midi notes
-
-# todo:
-#   - remove duplicate note in sus chords
-#   - de-spaghettify code
-#   - add ability to get individual note names in chord
-#   - add proper support for roman numeral slash chords (e.g. V/V in the key of C refers to D major)
-#   - better chord voicing
 
 import sys
 import math
@@ -118,10 +109,7 @@ def textToPitch(text, key = "c", voice = True):
 
     for i in range(1 if isLetter else 0, len(text)):
         if text[i] in ACC_TO_SHIFT.keys():
-            pitch += ACC_TO_SHIFT[text[i]]
-
-    #if voice and (pitch - textToPitch(key, voice=False) >= 5):
-    #    pitch -= 12      
+            pitch += ACC_TO_SHIFT[text[i]]   
     
     return pitch
 
@@ -143,15 +131,7 @@ def degreeToShift(deg):
 
 def voice(chords):
     center = 0
-
-
-    #voiced_chords = [chords[0]]
     voiced_chords = []
-
-    # Bring the fifth an octave down
-    # voiced_chords[0][3] -= 12
-
-    #center = chords[0][1] + 3
     chord_ct = 0 
     pChord = None
 
@@ -167,11 +147,7 @@ def voice(chords):
                 center = currChord[1] + 3
                 pChord = currChord
                 continue
-        # Skip first chord
-        #if i == 0:
-        #    continue
-        
-        #prevChord = voiced_chords[i - 1]
+
         prevChord = pChord
         voiced_chord = []
 
@@ -179,10 +155,6 @@ def voice(chords):
             # Skip bass note
             if i_ == 0:
                 prevNote = prevChord[0]
-
-                #print("================================")
-                #print("{: >4} {: >4} {: >4}    {: >4} {: >4} {: >4}".format("CN", "BN", "BV", "CN", "BN", "BV"))
-                
                 if abs(currNote - prevNote) > 7:
                     if currNote < prevNote and abs(currNote + 12 - prevNote) < abs(currNote - prevNote):
                         bestVoicing = currNote + 12
@@ -199,7 +171,6 @@ def voice(chords):
 
             while bestNeighbor == None:
                 allowance += 1
-
                 for i__, prevNote in enumerate(prevChord):
                     if i__ == 0:
                         continue
@@ -219,8 +190,6 @@ def voice(chords):
             bestVoicing = bestVoicing if (abs(bestVoicing - center) <= 8 or allowance > 2) else currNote
             voiced_chord.append(bestVoicing)
             
-
-            #print("{: >4} {: >4} {: >4}    {: >4} {: >4} {: >4}".format(pitchToText(currNote), pitchToText(bestNeighbor), pitchToText(bestVoicing), currNote, bestNeighbor, bestVoicing))
 
         voiced_chord.sort()
         voiced_chords.append(voiced_chord)
@@ -345,53 +314,3 @@ class Chord:
             notes[deg] += 12 * octave
 
         return list(notes.values())
-
-# if __name__ == "__main__":
-#     parser = argparse.ArgumentParser(description="EZChord - convert complex chord names to midi notes")
-#     parser.add_argument("chords", type=str, nargs="+", help="Sequence of chord names (e.g. C C7 F Fmin6 C/G G7 C)\n'-' continues the previous chord\n'nc' inserts a rest")
-#     parser.add_argument("-k", "--key", type=str, default="c", help="Key (default C)")
-#     parser.add_argument("-t", "--tempo", type=int, default=120, help="Tempo in beats per minute (default 120)")
-#     parser.add_argument("-d", "--duration", type=int, default=2, help="Duration of each chord (default 2)")
-#     parser.add_argument("-s", "--subdivide", type=int, default=1, help="Subdivide chord's duration (default 1)")
-#     parser.add_argument("-v", "--velocity", type=int, default=100, help="Velocity (default 100)")
-#     parser.add_argument("-O", "--octave", type=int, default=4, help="Octave (default 4)")
-#     parser.add_argument("-o", "--output", type=str, help="Output file path")
-#     parser.add_argument('--voice', action="store_true", help="Attempts to give chords a better voicing")
-
-#     args = parser.parse_args()
-
-#     MIDI = MIDIFile(1)
-#     MIDI.addTempo(0, 0, args.tempo)
-
-#     midi_chords = []
-
-#     outputFileName = "" if args.output == None else args.output
-#     needFileName = args.output == None
-
-#     for i, arg in enumerate(args.chords):
-#         if arg == "-":
-#             midi_chords.append(midi_chords[i - 1])
-#         elif arg.lower() in ["nc", "n.c", "n.c."]:
-#             midi_chords.append([])
-#         else:
-#             midi_chords.append(Chord(arg).getMIDI(args.key, args.octave))
-    
-#     if args.voice:
-#         midi_chords = voice(midi_chords)
-
-#     for i, chord in enumerate(midi_chords):
-#         for pitch in chord:
-#             for d in range(0, args.subdivide):
-#                 MIDI.addNote(0, 0, pitch, i * args.duration + d * (args.duration / args.subdivide), args.duration / args.subdivide, args.velocity)
-
-#         if needFileName:
-#             if i > 0:
-#                 outputFileName += "-"
-            
-#             outputFileName += args.chords[i].replace("/", "slash")
-
-#             if i == len(midi_chords) - 1:
-#                 outputFileName += ".mid"
-    
-#     with open(outputFileName, "wb") as outputFile:
-#         MIDI.writeFile(outputFile)
