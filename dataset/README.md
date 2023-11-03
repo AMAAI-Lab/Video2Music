@@ -1,5 +1,9 @@
 # MuVi-Sync Dataset
 
+- Dataset (MuVi-Sync)
+  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
+  * MuVi-Sync (original video) [(Link)](https://zenodo.org/records/10050294)
+
 ## Overview
 Welcome to the MuVi-Sync dataset! This collection provides a rich array of features for both music and video elements. Here's a breakdown of the directory structure:
 
