@@ -52,7 +52,7 @@ def main( vm = "", isPrintArgs = True):
         for v in vis_arr:
             vis_abbr_path = vis_abbr_path + "_" + VIS_ABBR_DIC[v]
         vis_abbr_path = vis_abbr_path[1:]
-        args.model_weights = "./saved_models/" + version + "/" + vis_abbr_path + "/results_regression_"+ regModel + "/best_rmse_weights.pickle"
+        args.model_weights = "./saved_models/" + version + "/best_rmse_weights.pickle"
 
     if(args.force_cpu):
         use_cuda(False)
