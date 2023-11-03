@@ -23,7 +23,7 @@ Welcome to the MuVi-Sync dataset! This collection provides a rich array of featu
 ### Others
 - **vevo_meta:**
   - *idlist.txt:* List of features, titles, and YouTube IDs
-- **vevo:** Original videos (.mp4)
+- **vevo:** Original video files (.mp4)
  
 Explore and utilize this dataset for innovative research and applications. 
 
