@@ -40,7 +40,7 @@ We propose a novel AI-powered multimodal music generation framework called Video
  
 * Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
-* Download the processed training data `AMT.zip` from [HERE](https://drive.google.com/file/d/1ZPQiTyz8wqxwPdYxYSCEtq4MLbR5s9jh/view?usp=drive_link) and extract the zip file and put the extracted two files directly under this folder (`saved_models/AMT/`) 
+* Download the processed training data `AMT.zip` from [HERE](https://drive.google.com/file/d/1qpcBXF04pgdy9hqRexr0mTx7L9_CAFpt/view?usp=drive_link) and extract the zip file and put the extracted two files directly under this folder (`saved_models/AMT/`) 
 
 * Install dependencies `pip install -r requirements.txt`
   * Choose the correct version of `torch` based on your CUDA version
