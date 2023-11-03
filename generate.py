@@ -186,7 +186,7 @@ def main():
     else:
         vispath = "no_video"
                 
-    os.makedirs(os.path.join(args.output_dir, vispath, str(args.test_id)), exist_ok=True)
+    os.makedirs(os.path.join(args.output_dir, str(args.test_id)), exist_ok=True)
     print("Using primer index:", test_id_idx, "(", dataset.data_files_chord[test_id_idx], ")")
 
     if "major" in custumKey:
@@ -321,17 +321,17 @@ def main():
             print("RAND DIST")
 
             if custumKey != "":
-                f_path_midi = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.mid")
-                f_path_lab = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.lab")
-                f_path_flac = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.flac")
+                f_path_midi = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.mid")
+                f_path_lab = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.lab")
+                f_path_flac = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.flac")
                 f_path_video = "dataset/vevo/" + str(args.test_id) +".mp4"
-                f_path_video_out = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.mp4")    
+                f_path_video_out = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + custumKey + "_cgen_rd.mp4")    
             else:
-                f_path_midi = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + "_cgen_rd.mid")
-                f_path_lab = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + "_cgen_rd.lab")
-                f_path_flac = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + "_cgen_rd.flac")
+                f_path_midi = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + "_cgen_rd.mid")
+                f_path_lab = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + "_cgen_rd.lab")
+                f_path_flac = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + "_cgen_rd.flac")
                 f_path_video = "dataset/vevo/" + str(args.test_id) +".mp4"
-                f_path_video_out = os.path.join(args.output_dir, vispath, str(args.test_id), str(args.test_id) + "_cgen_rd.mp4")
+                f_path_video_out = os.path.join(args.output_dir, str(args.test_id), str(args.test_id) + "_cgen_rd.mp4")
 
             if args.is_video:
                 if isPrimer and len(custumPrimer) == 0:
@@ -577,7 +577,6 @@ def main():
                             MIDI.addNote(0, 0, pitch,  i * duration,  duration,  velolistExp[i])
             else:
                 if isPrimer and len(custumPrimer) == 0:
-                    # generate(self, primer=None, target_seq_length=300, beam=0, beam_chance=1.0):
                     rand_seq = model.generate(feature_key=feature_key, 
                                               primer = primer[:args.num_prime_chord],
                                               primer_root = primer_root[:args.num_prime_chord],
