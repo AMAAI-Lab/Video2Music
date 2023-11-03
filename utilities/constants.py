@@ -30,41 +30,10 @@ MUSIC_TYPE = "lab_v2_norm"
 # - lab
 # - lab_v2
 # - lab_v2_norm
-
 # ----------------------------------------- #
 
 VIS_ABBR_DIC = {
-    "2d/alexnet" : "alex",
-    "2d/vgg16" : "vgg16",
-    "2d/vgg19" : "vgg19",
-    
-    "2d/resnet50" : "res50",
-    "2d/resnet101" : "res101",
-    
-    "2d/resnext50" : "rex50",
-    "2d/resnext101" : "rex101",
-    
-    "2d/densenet121" : "den121",
-    "2d/densenet169" : "den169",
-    
-    "2d/inception_v3" : "incv3",
-    "2d/mobilenet" : "mobile",
-    "2d/mnasnet" : "mnas",
-    "2d/shufflenet" : "shuf",
-    
-    "2d/efficientnet-b0" : "effb0",
-    "2d/efficientnet-b1" : "effb1",
-    "2d/efficientnet-b2" : "effb2",
-    "2d/efficientnet-b3" : "effb3",
-    "2d/efficientnet-b4" : "effb4",
-    "2d/efficientnet-b5" : "effb5",
-    "2d/efficientnet-b6" : "effb6",
-    "2d/efficientnet-b7" : "effb7",
-
     "2d/clip_l14p" : "clip_l14p", # NEW
-    
-    "3d/r21d": "3dr21d",
-    "3d/resnext101": "3drex101"
 }
 
 vis_arr = VIS_MODELS.split(" ")
