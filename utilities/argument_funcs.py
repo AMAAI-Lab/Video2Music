@@ -1,6 +1,4 @@
 import argparse
-
-#from .constants import SEPERATOR
 from .constants import *
 
 version = VERSION
@@ -93,7 +91,6 @@ def print_train_args(args):
     print("")
 
 def parse_eval_args():
-    
     if IS_VIDEO:
         modelpath = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results/best_loss_weights.pickle"
     else:
@@ -149,7 +146,6 @@ def print_eval_args(args):
     print("max_sequence_video:", args.max_sequence_video)
     print("max_sequence_chord:", args.max_sequence_chord)
     
-
     print("n_layers:", args.n_layers)
     print("num_heads:", args.num_heads)
     print("d_model:", args.d_model)
@@ -162,8 +158,7 @@ def print_eval_args(args):
 def parse_generate_args():
     parser = argparse.ArgumentParser()
     outputpath = "./output_vevo/"+version
-
-    #modelpath = "./saved_models/"+version+"/results/best_acc_weights.pickle"
+    
     if IS_VIDEO:
         modelpath = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results/best_acc_weights.pickle"
         modelpathReg = "./saved_models/"+version+ "/"+VIS_MODELS_PATH+"/results_regression_bigru/best_rmse_weights.pickle"
@@ -207,10 +202,6 @@ def parse_generate_args():
     else:
         parser.add_argument("-vis_models", type=str, default="", help="...")
 
-
-    
-
-
     parser.add_argument("-emo_model", type=str, default="6c_l14p", help="...")
     parser.add_argument("-rpr", type=bool, default=RPR, help="...")
     parser.add_argument("-test_id", type=str, default=None, help="Dimension of the feedforward layer")
@@ -218,18 +209,10 @@ def parse_generate_args():
     return parser.parse_args()
 
 def print_generate_args(args):
-    """
-    ----------
-    Author: Damon Gwinn
-    ----------
-    Prints generation arguments
-    ----------
-    """
-
+    
     print(SEPERATOR)
     print("input_dir_music:", args.input_dir_music)
     print("input_dir_video:", args.input_dir_video)
-
 
     print("output_dir:", args.output_dir)
     print("primer_file:", args.primer_file)
@@ -265,9 +248,6 @@ def print_generate_args(args):
 
 # write_model_params
 def write_model_params(args, output_file):
-    """
-    Writes given training parameters to text file
-    """
     o_stream = open(output_file, "w")
 
     o_stream.write("rpr: " + str(args.rpr) + "\n")
