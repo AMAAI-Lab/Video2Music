@@ -27,17 +27,12 @@ class VideoMusicTransformer(nn.Module):
 
         # Input embedding for video and music features
         self.embedding = nn.Embedding(CHORD_SIZE, self.d_model)
-
-        # self.embedding_key = nn.Embedding(1, self.d_model)
         self.embedding_root = nn.Embedding(CHORD_ROOT_SIZE, self.d_model)
         self.embedding_attr = nn.Embedding(CHORD_ATTR_SIZE, self.d_model)
         
         self.total_vf_dim = total_vf_dim
-
         self.Linear_vis     = nn.Linear(self.total_vf_dim, self.d_model)
-        
         self.Linear_chord     = nn.Linear(self.d_model+1, self.d_model)
-        
         
         # Positional encoding
         self.positional_encoding = PositionalEncoding(self.d_model, self.dropout, self.max_seq_chord)
@@ -74,9 +69,6 @@ class VideoMusicTransformer(nn.Module):
             mask = self.transformer.generate_square_subsequent_mask(x.shape[1]).to(get_device())
         else:
             mask = None
-
-        ### Chord + Key (DECODER) ###
-        # x = self.embedding(x)
         
         x_root = self.embedding_root(x_root)
         x_attr = self.embedding_attr(x_attr)
@@ -143,7 +135,6 @@ class VideoMusicTransformer(nn.Module):
 
         cur_i = num_primer
         while(cur_i < target_seq_length):
-            # gen_seq_batch     = gen_seq.clone()
             y = self.softmax( self.forward( gen_seq[..., :cur_i], gen_seq_root[..., :cur_i], gen_seq_attr[..., :cur_i], 
                                            feature_semantic_list, feature_key, feature_scene_offset, feature_motion, feature_emotion) )[..., :CHORD_END]
             
@@ -180,7 +171,6 @@ class VideoMusicTransformer(nn.Module):
                 
                 distrib = torch.distributions.categorical.Categorical(probs=token_probs)
                 next_token = distrib.sample()
-                #print("next token:",next_token)
                 gen_seq[:, cur_i] = next_token
                 gen_chord = chordInvDic[ str( next_token.item() ) ]
                 
@@ -209,70 +199,3 @@ class VideoMusicTransformer(nn.Module):
                 print(cur_i, "/", target_seq_length)
         return gen_seq[:, :cur_i]
 
-# start = datetime.now()
-# encoded = torch.squeeze(x)
-# encoded = encoded.cpu().numpy()
-# ct = 0
-# current_time = 0
-# tt = []
-# tt = np.ones([2048, 300]) * (-np.inf)
-
-# for token in encoded:
-#     t = []
-#     if token >= 256 and token <= 355:
-#         time = token - 255
-#         current_time += time
-#     for i in range(300):
-#         if (current_time / 100.0)+2 >= i and (current_time / 100.0)-2 <= i:
-#             tt[ct][i]  = float(0.0)
-#     ct += 1
-# m_mask = torch.from_numpy(tt)
-# m_mask = m_mask.to(device=get_device())
-# m_mask = m_mask.float()
-
-
-#ntt = np.asarray(tt)
-#memory_mask = torch.from_numpy(ntt)
-#memory_mask = memory_mask.float().masked_fill(memory_mask == 0, float('-inf')).masked_fill(memory_mask == 1, float(0.0))
-
-# record loop end timestamp
-# end = datetime.now()
-# td = (end - start).total_seconds() * 10**3
-# print(f"The time of execution of above program is : {td:.03f}ms")Z
-
-# copy the values from the original tensor to the new tensor
-#padded_tensor[:, :1, :] = condition
-# reshape the tensor to shape (1,299,1)
-#reshaped_tensor = padded_tensor.reshape(1, 299, 1)
-
-#x3 = torch.cat([x2, sf[:,:x.shape[1]].unsqueeze(-1)], dim=-1)
-
-#sf = sf.permute(1,0) # -> (max_seq_video, batch_size,)
-
-#vf2 = torch.cat([vf, sf.unsqueeze(-1)], dim=-1) # -> (max_seq_video, batch_size, d_model+1)
-#x2 = torch.cat([x, sf[:-1].unsqueeze(-1)], dim=-1) # -> (max_seq_video, batch_size, d_model+1)
-
-# print("---")
-# print(x.shape)
-# print(vf.shape)
-# print(sf.shape)
-# print("---")
-
-# x = torch.cat([features, scene_id.unsqueeze(-1)], dim=-1)
-# # Transpose the tensor to have shape (max_seq_video, batch_size, d_model+1)
-# x = x.transpose(0, 1)
-# convert condition to shape (batch_size, d_model)
-#condition = self.condition_linear(condition)
-
-# add condition to the input sequence
-#x = x + condition.unsqueeze(0)
-
-
-#value = condition.item()
-#x_out = self.transformer(src=vf, tgt=x, tgt_mask=mask, memory_mask=m_mask)
-
-
-
-# >>> TORCH_LABEL_TYPE = torch.long
-# print("primer:",primer)
-# print(gen_seq)
