@@ -668,7 +668,6 @@ def main():
             audio = audio.subclip(0, video.duration )
             final=video.set_audio(audio)
             
-            #final.write_videofile(f_path_video_out)
             text_prime = text_clip("Prime Chords", args.num_prime_chord)
             text_gen = text_clip("Generated Chords", int(video.duration) - args.num_prime_chord, args.num_prime_chord)
 
