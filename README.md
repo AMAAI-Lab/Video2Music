@@ -58,7 +58,7 @@ We propose a novel AI-powered multimodal music generation framework called Video
   ```
 
 ## Citation
-If you find this resource useful, [please cite the original work](https://arxiv.org/abs/XXX):
+If you find this resource useful, [please cite the original work](https://arxiv.org/abs/2311.00968):
 
       @article{kang2023video2music,
         title={Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model},
