@@ -22,11 +22,10 @@ from utilities.argument_funcs import parse_train_args, print_train_args, write_m
 from utilities.run_model_vevo import train_epoch, eval_model
 
 CSV_HEADER = ["Epoch", "Learn rate", 
-              "Avg Train loss (total)", "Avg Train loss (chord)", "Avg Train loss (emotion)", "Train Accuracy", 
-              "Avg Eval loss (total)", "Avg Eval loss (chord)", "Avg Eval loss (emotion)", "Eval accuracy"]
+              "Avg Train loss (total)", "Avg Train loss (chord)", "Avg Train loss (emotion)", 
+              "Avg Eval loss (total)", "Avg Eval loss (chord)", "Avg Eval loss (emotion)"]
 
 BASELINE_EPOCH = -1
-
 version = VERSION
 split_ver = SPLIT_VER
 split_path = "split_" + split_ver
@@ -60,21 +59,20 @@ def main( vm = "" , isPrintArgs = True ):
         print("")
 
     os.makedirs( args.output_dir, exist_ok=True)
-    os.makedirs( os.path.join( args.output_dir, version, vis_abbr_path) ,  exist_ok=True)
+    os.makedirs( os.path.join( args.output_dir, version),  exist_ok=True)
 
     ##### Output prep #####
-    params_file = os.path.join(args.output_dir, version, vis_abbr_path, "model_params.txt")
+    params_file = os.path.join(args.output_dir, version, "model_params.txt")
     write_model_params(args, params_file)
 
-    weights_folder = os.path.join(args.output_dir, version, vis_abbr_path, "weights")
+    weights_folder = os.path.join(args.output_dir, version, "weights")
     os.makedirs(weights_folder, exist_ok=True)
 
-    results_folder = os.path.join(args.output_dir, version, vis_abbr_path, "results")
+    results_folder = os.path.join(args.output_dir, version)
     os.makedirs(results_folder, exist_ok=True)
 
     results_file = os.path.join(results_folder, "results.csv")
-    best_loss_file = os.path.join(results_folder, "best_loss_weights.pickle")
-    best_acc_file = os.path.join(results_folder, "best_acc_weights.pickle")
+    best_loss_file = os.path.join(results_folder, "best_loss_weights.pickle")  
     best_text = os.path.join(results_folder, "best_epochs.txt")
 
     ##### Tensorboard #####
@@ -82,7 +80,7 @@ def main( vm = "" , isPrintArgs = True ):
         tensorboard_summary = None
     else:
         from torch.utils.tensorboard import SummaryWriter
-        tensorboad_dir = os.path.join(args.output_dir, version, vis_abbr_path, "tensorboard")
+        tensorboad_dir = os.path.join(args.output_dir, version, "tensorboard")
         tensorboard_summary = SummaryWriter(log_dir=tensorboad_dir)
         
     train_dataset, val_dataset, _ = create_vevo_datasets(
@@ -163,11 +161,7 @@ def main( vm = "" , isPrintArgs = True ):
     else:
         lr_scheduler = None
 
-
-    ##### Tracking best evaluation accuracy #####
-    best_eval_acc        = 0.0
-    best_eval_acc_epoch  = -1
-
+    ##### Tracking best evaluation loss #####
     best_eval_loss       = float("inf")
     best_eval_loss_epoch = -1
 
@@ -244,12 +238,6 @@ def main( vm = "" , isPrintArgs = True ):
 
         new_best = False
 
-        if(eval_acc > best_eval_acc):
-            best_eval_acc = eval_acc
-            best_eval_acc_epoch  = epoch+1
-            torch.save(model.state_dict(), best_acc_file)
-            new_best = True
-
         if(eval_total_loss < best_eval_loss):
             best_eval_loss       = eval_total_loss
             best_eval_loss_epoch = epoch+1
@@ -259,23 +247,16 @@ def main( vm = "" , isPrintArgs = True ):
         # Writing out new bests
         if(new_best):
             with open(best_text, "w") as o_stream:
-                print("Best val acc epoch:", best_eval_acc_epoch, file=o_stream)
-                print("Best val acc:", best_eval_acc, file=o_stream)
-                print("")
                 print("Best val loss epoch:", best_eval_loss_epoch, file=o_stream)
                 print("Best val loss:", best_eval_loss, file=o_stream)
                 
         if(not args.no_tensorboard):
             tensorboard_summary.add_scalar("Avg_CE_loss/train", train_total_loss, global_step=epoch+1)
             tensorboard_summary.add_scalar("Avg_CE_loss/eval", eval_total_loss, global_step=epoch+1)
-
             tensorboard_summary.add_scalar("Avg_CE_loss_chord/train", train_loss_chord, global_step=epoch+1)
             tensorboard_summary.add_scalar("Avg_CE_loss_chord/eval", eval_loss_chord, global_step=epoch+1)
             tensorboard_summary.add_scalar("Avg_CE_loss_emotion/train", train_loss_emotion, global_step=epoch+1)
             tensorboard_summary.add_scalar("Avg_CE_loss_emotion/eval", eval_loss_emotion, global_step=epoch+1)
-
-            tensorboard_summary.add_scalar("Accuracy/train", train_acc, global_step=epoch+1)
-            tensorboard_summary.add_scalar("Accuracy/eval", eval_acc, global_step=epoch+1)
             tensorboard_summary.add_scalar("Learn_rate/train", lr, global_step=epoch+1)
             tensorboard_summary.flush()
             
@@ -287,8 +268,8 @@ def main( vm = "" , isPrintArgs = True ):
         with open(results_file, "a", newline="") as o_stream:
             writer = csv.writer(o_stream)
             writer.writerow([epoch+1, lr, 
-                             train_total_loss, train_loss_chord, train_loss_emotion, train_acc, 
-                             eval_total_loss, eval_loss_chord, eval_loss_emotion, eval_acc])
+                             train_total_loss, train_loss_chord, train_loss_emotion, 
+                             eval_total_loss, eval_loss_chord, eval_loss_emotion])
             
     # Sanity check just to make sure everything is gone
     if(not args.no_tensorboard):
