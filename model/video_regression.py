@@ -19,7 +19,6 @@ class VideoRegression(nn.Module):
         self.total_vf_dim = total_vf_dim
         self.regModel = regModel
 
-        #self.lstm = nn.LSTM(self.total_vf_dim, self.d_model, self.nlayers, bidirectional=True)
         self.bilstm = nn.LSTM(self.total_vf_dim, self.d_model, self.nlayers, bidirectional=True)
         self.bigru = nn.GRU(self.total_vf_dim, self.d_model, self.nlayers, bidirectional=True)
         self.bifc = nn.Linear(self.d_model * 2, 2)
@@ -28,10 +27,6 @@ class VideoRegression(nn.Module):
         self.gru = nn.GRU(self.total_vf_dim, self.d_model, self.nlayers)
         self.fc = nn.Linear(self.d_model, 2)
 
-        # self.attention = nn.Sequential(
-        #     nn.Linear(self.total_vf_dim, 1),
-        #     nn.Tanh(),
-        # )
         
     def forward(self, feature_semantic_list, feature_scene_offset, feature_motion, feature_emotion):
         ### Video (SemanticList + SceneOffset + Motion + Emotion) (ENCODER) ###
@@ -42,9 +37,6 @@ class VideoRegression(nn.Module):
         vf_concat = torch.cat([vf_concat, feature_scene_offset.unsqueeze(-1).float()], dim=-1) 
         vf_concat = torch.cat([vf_concat, feature_motion.unsqueeze(-1).float()], dim=-1) 
         vf_concat = torch.cat([vf_concat, feature_emotion.float()], dim=-1) 
-
-        # hidden_state = torch.zeros(2, vf_concat.shape[0] , self.d_model).to(get_device())
-        # cell_state = torch.zeros(2, vf_concat.shape[0] , self.d_model).to(get_device())
 
         vf_concat = vf_concat.permute(1,0,2)
         vf_concat = F.dropout(vf_concat, p=self.dropout, training=self.training)
@@ -66,18 +58,4 @@ class VideoRegression(nn.Module):
             out = out.permute(1,0,2)
             out = self.fc(out)
         return out
-    
-        # # Add attention mechanism
-        # attn_weights = F.softmax(self.attention(vf_concat), dim=1)
-        # out = torch.bmm(attn_weights.transpose(1, 2), vf_concat)
         
-        # # Add attention mechanism
-        # attn_weights = F.softmax(self.attention(out), dim=1)
-        # out = torch.bmm(attn_weights.transpose(1, 2), out)
-        
-        # # Add regularization with dropout
-        # out = F.dropout(out, p=self.dropout, training=self.training)
-        
-        # out, _ = self.lstm(out)
-        # out = self.fc(out)
-        # return out
