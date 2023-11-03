@@ -61,29 +61,28 @@ def main( vm = "" , isPrintArgs = True ):
         print("")
 
     os.makedirs( args.output_dir, exist_ok=True)
-    os.makedirs( os.path.join( args.output_dir, version, vis_abbr_path) ,  exist_ok=True)
+    os.makedirs( os.path.join( args.output_dir, version) ,  exist_ok=True)
 
     ##### Output prep #####
-    params_file = os.path.join(args.output_dir, version, vis_abbr_path, "model_params_regression.txt")
+    params_file = os.path.join(args.output_dir, version, "model_params_regression.txt")
     write_model_params(args, params_file)
 
-    weights_folder = os.path.join(args.output_dir, version, vis_abbr_path, "weights_regression_" + regModel)
+    weights_folder = os.path.join(args.output_dir, version, "weights_regression_" + regModel)
     os.makedirs(weights_folder, exist_ok=True)
 
-    results_folder = os.path.join(args.output_dir, version, vis_abbr_path, "results_regression_" + regModel)
+    results_folder = os.path.join(args.output_dir, version)
     os.makedirs(results_folder, exist_ok=True)
 
-    results_file = os.path.join(results_folder, "results.csv")
-    best_loss_file = os.path.join(results_folder, "best_loss_weights.pickle")
+    results_file = os.path.join(results_folder, "results_regression.csv")
     best_rmse_file = os.path.join(results_folder, "best_rmse_weights.pickle")
-    best_text = os.path.join(results_folder, "best_epochs.txt")
+    best_text = os.path.join(results_folder, "best_epochs_regression.txt")
 
     ##### Tensorboard #####
     if(args.no_tensorboard):
         tensorboard_summary = None
     else:
         from torch.utils.tensorboard import SummaryWriter
-        tensorboad_dir = os.path.join(args.output_dir, version, vis_abbr_path, "tensorboard")
+        tensorboad_dir = os.path.join(args.output_dir, version, "tensorboard_regression")
         tensorboard_summary = SummaryWriter(log_dir=tensorboad_dir)
         
     train_dataset, val_dataset, _ = create_vevo_datasets(
@@ -185,12 +184,6 @@ def main( vm = "" , isPrintArgs = True ):
             torch.save(model.state_dict(), best_rmse_file)
             new_best = True
         
-        if(eval_loss < best_eval_loss):
-            best_eval_loss       = eval_loss
-            best_eval_loss_epoch = epoch+1
-            torch.save(model.state_dict(), best_loss_file)
-            new_best = True
-
         # Writing out new bests
         if(new_best):
             with open(best_text, "w") as o_stream:
