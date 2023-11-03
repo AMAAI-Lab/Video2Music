@@ -48,13 +48,3 @@ class MusicLSTM(nn.Module):
         else:
             y = lstm_out
             return y
-        
-
-# Create an instance of MusicLSTM
-# input_size = d_model  # You can adjust this based on your needs
-# hidden_size = 512    # You can adjust this based on your needs
-# num_layers = 2       # You can adjust this based on your needs
-# output_size = CHORD_SIZE
-# dropout = 0.1
-
-# lstm_model = MusicLSTM(input_size, hidden_size, num_layers, output_size, dropout)
