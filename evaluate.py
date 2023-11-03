@@ -46,10 +46,10 @@ def main( vm = "", isPrintArgs = True):
         for v in vis_arr:
             vis_abbr_path = vis_abbr_path + "_" + VIS_ABBR_DIC[v]
         vis_abbr_path = vis_abbr_path[1:]
-        args.model_weights = "./saved_models/" + version + "/" + vis_abbr_path + "/results/best_acc_weights.pickle"
+        args.model_weights = "./saved_models/" + version + "/best_loss_weights.pickle"
     else:
         vis_abbr_path = "no_video"
-        args.model_weights = "./saved_models/" + version + "/" + vis_abbr_path + "/results/best_acc_weights.pickle"
+        args.model_weights = "./saved_models/" + version + "/best_loss_weights.pickle"
         
     if(args.force_cpu):
         use_cuda(False)
