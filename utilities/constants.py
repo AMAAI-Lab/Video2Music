@@ -1,12 +1,9 @@
 import torch
-
 from third_party.midi_processor.processor import RANGE_NOTE_ON, RANGE_NOTE_OFF, RANGE_VEL, RANGE_TIME_SHIFT
 
-# ----------------------------------------- #
-# VERSION = "v19" # BEST
-
 #Proposed (AMT l0.4)
-VERSION = "v27_video_rpr_nosep_l0.4"
+# VERSION = "v27_video_rpr_nosep_l0.4"
+VERSION = "AMT"
 
 #Best Baseline (MT)
 # VERSION = "v27_novideo_rpr_nosep"
@@ -15,21 +12,19 @@ IS_SEPERATED = False # True : seperated chord quality and root output
 RPR = True
 IS_VIDEO = True
 
-GEN_MODEL = "Music Transformer"
-
+GEN_MODEL = "Video Music Transformer"
 # LSTM
 # Transformer
 # Music Transformer
 # Video Music Transformer
 
-
 LOSS_LAMBDA = 0.4 # lamda * chord  +  ( 1-lamda ) * emotion
 
 EMOTION_THRESHOLD = 0.80
 
-#VIS_MODELS = "2d/resnet50 2d/resnet101 3d/r21d 3d/resnext101"
 VIS_MODELS = "2d/clip_l14p"
 SPLIT_VER = "v1"
+
 MUSIC_TYPE = "lab_v2_norm"
 # - midi_prep
 # - lab
@@ -127,23 +122,7 @@ TORCH_INT               = torch.int32
 TORCH_LABEL_TYPE        = torch.long
 PREPEND_ZEROS_WIDTH     = 4
 
-# LABEL_SMOOTHING_E       = 0.1
-# DROPOUT_P               = 0.1
-
-###--- old ---###
-
 # MIDI
 TOKEN_END               = RANGE_NOTE_ON + RANGE_NOTE_OFF + RANGE_VEL + RANGE_TIME_SHIFT
 TOKEN_PAD               = TOKEN_END + 1
 VOCAB_SIZE              = TOKEN_PAD + 1
-
-
-
-
-#v27_novideo_norpr_sep_l0.2
-#v27_video_norpr_sep_l0.2
-#v22_l1.0
-#v22_l1.0
-#v22_mt
-#v22_t
-#v22_t
