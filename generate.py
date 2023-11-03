@@ -67,10 +67,7 @@ regModel = "bigru"
 max_conseq_N = 0
 max_conseq_chord = 2
 
-
-
 def text_clip(text: str, duration: int, start_time: int = 0):
-    #t = TextClip(text, fontsize = 30, color = 'black', stroke_width=1, stroke_color="white")
     t = TextClip(text, font='Georgia-Regular', fontsize=24, color='white')
     t = t.set_position(("center", 20)).set_duration(duration)
     t = t.set_start(start_time)
@@ -257,7 +254,6 @@ def main():
         primerCID_attr = primerCID_attr.to(get_device())
     else:
         if len(custumPrimer) >= 1:
-            #pChordList = custumPrimer.split(" ")
             primerCID = []
             primerCID_root = []
             primerCID_attr = []
@@ -321,7 +317,6 @@ def main():
         if(args.beam > 0):
             print("BEAM:", args.beam)
             assert False, "No Beam sampling method implemented yet..."
-            # ONGOING
         else:
             print("RAND DIST")
 
@@ -437,7 +432,6 @@ def main():
                     midi_chords = midi_chords_orginal
                 
                 if isArp:
-                    # print("hello")
                     #chord_genlist
                     for i, chord in enumerate(midi_chords):
                         if densitylist[i] == 0:
@@ -598,8 +592,7 @@ def main():
                                               target_seq_length = args.target_seq_length_chord, 
                                               beam=0)
                 vispath = "no_video"
-                #assert False, "No video case (arg.is_video == False) not implemented yet..."
-                #generated ChordID to ChordSymbol
+                
                 chord_genlist = []
                 chordID_genlist= rand_seq[0].cpu().numpy()
                 for i in chordID_genlist:
@@ -630,7 +623,6 @@ def main():
                     midi_chords = midi_chords_orginal
                 
                 if isArp:
-                    # print("hello")
                     #chord_genlist
                     for i, chord in enumerate(midi_chords):
                         # 1 * 2 * 3 * 4 * | 3 * 2 * 3 * 4 *
