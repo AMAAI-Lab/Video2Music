@@ -27,6 +27,7 @@ We propose a novel AI-powered multimodal music generation framework called Video
   * `rpr.py`: code for RPR (Relative Positional Representation)
 * `dataset/`
   * `vevo_dataset.py`: Dataset loader
+* `script/` : code for extracting video/music features (sementic, motion, emotion, scene offset, loudness, and note density)
 * `train.py`: training script (AMT)
 * `train_regression.py`: training script (bi-GRU)
 * `evaluate.py`: evaluation script
