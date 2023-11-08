@@ -74,3 +74,9 @@ If you find this resource useful, [please cite the original work](https://arxiv.
 
 Kang, J., Poria, S. & Herremans, D. (2023). Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model. arXiv preprint arXiv:2311.00968.
 
+
+## Acknowledgements
+
+Our code is based on [Music Transformer](https://github.com/gwinndr/MusicTransformer-Pytorch).
+
+
