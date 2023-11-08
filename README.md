@@ -46,7 +46,7 @@ We propose a novel AI-powered multimodal music generation framework called Video
 * Download the processed training data `AMT.zip` from [HERE](https://drive.google.com/file/d/1qpcBXF04pgdy9hqRexr0mTx7L9_CAFpt/view?usp=drive_link) and extract the zip file and put the extracted two files directly under this folder (`saved_models/AMT/`) 
 
 * Install dependencies `pip install -r requirements.txt`
-  * Our code is built on pytorch version 1.12.1 and Python version 3.7.15. But you might need to choose the correct version of `torch` based on your CUDA version
+  * Our code is built on pytorch version 1.12.1 and Python version 3.7.15 (torch==1.13.1 in the requirements.txt). But you might need to choose the correct version of `torch` based on your CUDA version
 
 ## Training
 
