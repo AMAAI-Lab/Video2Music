@@ -2,7 +2,7 @@
 
 # Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model
 
-[Demo](https://replicate.com/amaai-lab/video2music) | [Website and Examples](https://amaai-lab.github.io/Video2Music/) | [Paper](https://arxiv.org/abs/2311.00968) | [Dataset](https://zenodo.org/records/10057093)
+[Demo](https://replicate.com/amaai-lab/video2music) | [Website and Examples](https://amaai-lab.github.io/Video2Music/) | [Paper](https://arxiv.org/abs/2311.00968) | [Dataset (MuVi-Sync)](https://zenodo.org/records/10057093)
 
 </div>
 
