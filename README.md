@@ -1,15 +1,15 @@
+<div align="center">
+
 # Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model
+
+[Demo](https://replicate.com/amaai-lab/video2music) | [Website and Examples](https://amaai-lab.github.io/Video2Music/) | [Paper](https://arxiv.org/abs/2311.00968) | [Dataset](https://zenodo.org/records/10057093)
+
+</div>
 
 This repository contains the code and dataset accompanying the paper "Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model" by Dr. Jaeyong Kang, Prof. Soujanya Poria, and Prof. Dorien Herremans.
 
-- 🔥 [Live demo on replicate!](https://replicate.com/amaai-lab/video2music)
-- [Demo generated music videos](https://amaai-lab.github.io/Video2Music/)
-- [Paper](https://arxiv.org/abs/2311.00968)
-- Dataset (MuVi-Sync)
-  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
-  * MuVi-Sync (original video) [(Link)](https://zenodo.org/records/10050294)
-  * MuVi-Sync (original audio) [(Link)](https://zenodo.org/records/10062564)
-  
+🔥 Live demo available on [Replicate](https://replicate.com/amaai-lab/video2music).
+
 ## Introduction
 We propose a novel AI-powered multimodal music generation framework called Video2Music. This framework uniquely uses video features as conditioning input to generate matching music using a Transformer architecture. By employing cutting-edge technology, our system aims to provide video creators with a seamless and efficient solution for generating tailor-made background music.
 
