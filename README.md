@@ -65,9 +65,9 @@ We propose a novel AI-powered multimodal music generation framework called Video
 ## Subjective Evaluation by Listeners
 
 | **Model** | **Overall Music Quality** ↑ | **Music-Video Correspondence** ↑ | **Harmonic Matching** ↑ | **Rhythmic Matching** ↑ | **Loudness Matching** ↑ |
-|-----------|:-----------:|:----------:|:----------:|:----------:|:----------:|
+|--------------------|:-----------:|:----------:|:----------:|:----------:|:----------:|
 | Music Transformer  | 3.4905      | 2.7476     | 2.6333     | 2.8476     | 3.1286     |
-| Video2Music  | 4.2095      | 3.6667     | 3.4143     | 3.8714     | 3.8143     |
+| Video2Music        | 4.2095      | 3.6667     | 3.4143     | 3.8714     | 3.8143     |
 
 ## Citation
 If you find this resource useful, [please cite the original work](https://arxiv.org/abs/2311.00968):
