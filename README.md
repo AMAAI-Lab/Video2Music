@@ -29,7 +29,7 @@ Generate music from video:
 import IPython
 from video2music import Video2music
 
-input_video = "dataset/vevo/049.mp4"
+input_video = "input.mp4"
 
 input_primer = "C Am F G"
 input_key = "C major"
