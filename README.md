@@ -10,7 +10,7 @@
 
 This repository contains the code and dataset accompanying the paper "Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model" by Dr. Jaeyong Kang, Prof. Soujanya Poria, and Prof. Dorien Herremans.
 
-🔥 Live demo available on [Replicate](https://replicate.com/amaai-lab/video2music) and [HuggingFace](https://huggingface.co/spaces/amaai-lab/video2music).
+🔥 Live demo available on [HuggingFace](https://huggingface.co/spaces/amaai-lab/video2music) and [Replicate](https://replicate.com/amaai-lab/video2music).
 
 <div align="center">
   <img src="v2m.png" width="400"/>
