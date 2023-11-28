@@ -387,7 +387,7 @@ class Video2music:
         self.model.eval()
         self.modelReg.eval()
 
-        self.SF2_FILE = "default_sound_font.sf2"
+        self.SF2_FILE = "soundfonts/default_sound_font.sf2"
 
     def generate(self, video, primer, key):
 
