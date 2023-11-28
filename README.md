@@ -21,6 +21,36 @@ We propose a novel AI-powered multimodal music generation framework called Video
 
 ![](framework.png)
 
+## Quickstart Guide
+
+Generate music from video:
+
+```python
+import IPython
+from video2music import Video2music
+
+input_video = "test.mp4"
+
+input_primer = "C Am F G"
+input_key = "C major"
+
+video2music = Video2music()
+output_filename = video2music.generate(input_video, input_primer, input_key)
+
+IPython.display.Video(output_filename)
+```
+
+## Installation
+
+```bash
+apt-get update
+apt-get install ffmpeg
+apt-get install fluidsynth
+git clone https://github.com/AMAAI-Lab/Video2Music
+cd Video2Music
+pip install -r requirements.txt
+```
+
 ## Directory Structure
 
 * `saved_models/`: saved model files
