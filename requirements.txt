@@ -1,6 +1,9 @@
+torch==1.12.1
+torchvision==0.13.1
 clip @ git+https://github.com/openai/CLIP.git
+Cython==3.0.5
+numpy==1.21.2
 coloredlogs==15.0.1
-efficientnet_pytorch==0.7.1
 ffmpeg_python==0.2.0
 ftfy==6.1.1
 matplotlib==3.5.3
@@ -8,8 +11,6 @@ midi2audio==0.1.1
 MIDIUtil==1.2.1
 moviepy==1.0.3
 music21==7.3.3
-numpy==1.19.5
-omnizart==0.5.0
 opencv_python==4.7.0.72
 pandas==1.3.5
 Pillow==8.4.0
@@ -19,5 +20,6 @@ regex==2022.10.31
 scenedetect==0.6.1
 scikit_learn==1.0.2
 scipy==1.7.3
-torch==1.12.1
-torchvision==0.13.1
+gradio==4.7.1
+pytube==15.0.0
+pyfluidsynth
