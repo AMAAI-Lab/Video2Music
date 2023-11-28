@@ -51,6 +51,20 @@ cd Video2Music
 pip install -r requirements.txt
 ```
 
+* Download the processed training data `AMT.zip` from [HERE](https://drive.google.com/file/d/1qpcBXF04pgdy9hqRexr0mTx7L9_CAFpt/view?usp=drive_link) and extract the zip file and put the extracted two files directly under this folder (`saved_models/AMT/`)
+
+* Download the soundfont file `default_sound_font.sf2` from [HERE](https://drive.google.com/file/d/1B9qjgimW9h6Gg5k8PZNt_ArWwSMJ4WuJ/view?usp=drive_link) and put the file directly under this folder (`soundfonts/`)
+
+* Our code is built on pytorch version 1.12.1 and Python version 3.7.15 (torch==1.12.1 in the requirements.txt). But you might need to choose the correct version of `torch` based on your CUDA version
+
+## Dataset
+
+* Obtain the dataset:
+  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
+  * MuVi-Sync (original video) [(Link)](https://zenodo.org/records/10050294)
+ 
+* Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
+
 ## Directory Structure
 
 * `saved_models/`: saved model files
@@ -69,21 +83,6 @@ pip install -r requirements.txt
 * `train_regression.py`: training script (bi-GRU)
 * `evaluate.py`: evaluation script
 * `generate.py`: inference script
-
-## Preparation
-
-* Clone this repo
-
-* Obtain the dataset:
-  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
-  * MuVi-Sync (original video) [(Link)](https://zenodo.org/records/10050294)
- 
-* Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
-
-* Download the processed training data `AMT.zip` from [HERE](https://drive.google.com/file/d/1qpcBXF04pgdy9hqRexr0mTx7L9_CAFpt/view?usp=drive_link) and extract the zip file and put the extracted two files directly under this folder (`saved_models/AMT/`) 
-
-* Install dependencies `pip install -r requirements.txt`
-  * Our code is built on pytorch version 1.12.1 and Python version 3.7.15 (torch==1.13.1 in the requirements.txt). But you might need to choose the correct version of `torch` based on your CUDA version
 
 ## Training
 
