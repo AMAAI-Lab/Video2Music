@@ -21,6 +21,10 @@ We propose a novel AI-powered multimodal music generation framework called Video
 
 ![](framework.png)
 
+
+## Change Log
+- 2023-11-28: add new input method (YouTube URL) on HuggingFace
+
 ## Quickstart Guide
 
 Generate music from video:
@@ -104,6 +108,11 @@ pip install -r requirements.txt
 |--------------------|:-----------:|:----------:|:----------:|:----------:|:----------:|
 | Music Transformer  | 3.4905      | 2.7476     | 2.6333     | 2.8476     | 3.1286     |
 | Video2Music        | 4.2095      | 3.6667     | 3.4143     | 3.8714     | 3.8143     |
+
+
+## TODO
+
+- [ ] Add other instruments (e.g., drum) for live demo
 
 ## Citation
 If you find this resource useful, [please cite the original work](https://arxiv.org/abs/2311.00968):
