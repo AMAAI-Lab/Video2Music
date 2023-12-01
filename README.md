@@ -88,6 +88,8 @@ pip install -r requirements.txt
 * `train_regression.py`: training script (bi-GRU)
 * `evaluate.py`: evaluation script
 * `generate.py`: inference script
+* `video2music.py`: Video2Music module that outputs video with generated background music from input video
+* `demo.ipynb`: Jupyter notebook for Quickstart Guide
 
 ## Training
 
