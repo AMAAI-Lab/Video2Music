@@ -64,9 +64,7 @@ pip install -r requirements.txt
 ## Dataset
 
 * Obtain the dataset:
-  * MuVi-Sync (features) [(Link)](https://zenodo.org/records/10057093)
-  * MuVi-Sync (original video) [(Link)](https://zenodo.org/records/10050294)
-  * MuVi-Sync (original audio) [(Link)](https://zenodo.org/records/10062564)
+  * MuVi-Sync [(Link)](https://zenodo.org/records/10057093)
  
 * Put all directories started with `vevo` in the dataset under this folder (`dataset/`) 
 
