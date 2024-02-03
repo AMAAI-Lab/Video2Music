@@ -3,7 +3,7 @@ import torch.nn as nn
 import os
 import random
 
-from third_party.midi_processor.processor import decode_midi, encode_midi
+from thirdparty.midiprocessor.processor import decode_midi, encode_midi
 from utilities.argument_funcs import parse_generate_args, print_generate_args
 from utilities.chord_to_midi import *
 
@@ -205,9 +205,9 @@ def main():
                     max_sequence_midi=args.max_sequence_midi, max_sequence_video=args.max_sequence_video, 
                     max_sequence_chord=args.max_sequence_chord, total_vf_dim=total_vf_dim, rpr=args.rpr).to(get_device())
         
-        model.load_state_dict(torch.load(args.model_weights))
+        model.load_state_dict(torch.load(args.model_weights,map_location='cuda:0'))
         modelReg = VideoRegression(max_sequence_video=args.max_sequence_video, total_vf_dim=total_vf_dim, regModel= regModel).to(get_device())
-        modelReg.load_state_dict(torch.load(args.modelReg_weights))
+        modelReg.load_state_dict(torch.load(args.modelReg_weights,map_location='cuda:0'))
     else:
         model = MusicTransformer(n_layers=args.n_layers, num_heads=args.num_heads,
                     d_model=args.d_model, dim_feedforward=args.dim_feedforward,

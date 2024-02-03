@@ -1,5 +1,5 @@
 import torch
-from third_party.midi_processor.processor import RANGE_NOTE_ON, RANGE_NOTE_OFF, RANGE_VEL, RANGE_TIME_SHIFT
+from thirdparty.midiprocessor.processor import RANGE_NOTE_ON, RANGE_NOTE_OFF, RANGE_VEL, RANGE_TIME_SHIFT
 
 #Proposed (AMT l0.4)
 # VERSION = "v27_video_rpr_nosep_l0.4"
