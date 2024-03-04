@@ -121,12 +121,12 @@ If you find this resource useful, [please cite the original work](https://arxiv.
 @article{kang2023video2music,
   title={Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model},
   author={Kang, Jaeyong and Poria, Soujanya and Herremans, Dorien},
-  journal={arXiv preprint arXiv:2311.00968},
-  year={2023}
+  journal={Expert Systems with Applications (in press)},
+  year={2024}
 }
 ```
 
-Kang, J., Poria, S. & Herremans, D. (2023). Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model. arXiv preprint arXiv:2311.00968.
+Kang, J., Poria, S. & Herremans, D. (2024). Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model, Expert Systems with Applications (in press).
 
 
 ## Acknowledgements
