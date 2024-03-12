@@ -120,11 +120,14 @@ pip install -r requirements.txt
 If you find this resource useful, [please cite the original work](https://arxiv.org/abs/2311.00968):
 
 ```bibtex
-@article{kang2023video2music,
-  title={Video2Music: Suitable Music Generation from Videos using an Affective Multimodal Transformer model},
-  author={Kang, Jaeyong and Poria, Soujanya and Herremans, Dorien},
-  journal={Expert Systems with Applications (in press)},
-  year={2024}
+@article{KANG2024123640,
+  title = {Video2Music: Suitable music generation from videos using an Affective Multimodal Transformer model},
+  author = {Jaeyong Kang and Soujanya Poria and Dorien Herremans},
+  journal = {Expert Systems with Applications},
+  pages = {123640},
+  year = {2024},
+  issn = {0957-4174},
+  doi = {https://doi.org/10.1016/j.eswa.2024.123640},
 }
 ```
 
