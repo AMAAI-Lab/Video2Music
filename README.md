@@ -117,7 +117,7 @@ pip install -r requirements.txt
 - [ ] Add other instruments (e.g., drum) for live demo
 
 ## Citation
-If you find this resource useful, [please cite the original work](https://arxiv.org/abs/2311.00968):
+If you find this resource useful, [please cite the original work](https://doi.org/10.1016/j.eswa.2024.123640):
 
 ```bibtex
 @article{KANG2024123640,
