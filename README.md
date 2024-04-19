@@ -48,7 +48,7 @@ IPython.display.Video(output_filename)
 
 ## Installation
 
-This repo is developed using python==3.8.
+This repo is developed using python version 3.8
 
 ```bash
 apt-get update
